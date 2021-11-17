@@ -1,3 +1,3 @@
 <h1>objectZilla&trade;</h1>
-<hr>
+<hr/>
 Projekt na TO
