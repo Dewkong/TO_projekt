@@ -13,7 +13,7 @@ public class Transaction {
     private final String transactioneeName; // nadawca/odbiorca
     private final String transactioneeAccountNumber;
 
-    private Transaction(BigDecimal bigDecimal, BigDecimal balance, LocalDate operationDate, LocalDate bookingDate, String title, String transactioneeName, String transactioneeAccountNumber) {
+    public Transaction(BigDecimal bigDecimal, BigDecimal balance, LocalDate operationDate, LocalDate bookingDate, String title, String transactioneeName, String transactioneeAccountNumber) {
         this.amount = bigDecimal;
         this.balance = balance;
         this.operationDate = operationDate;
@@ -61,42 +61,42 @@ public class Transaction {
         private String transactioneeName = ""; // nadawca/odbiorca
         private String transactioneeAccountNumber = "";
 
-        TransactionBuilder amount(BigDecimal amount) {
+        public TransactionBuilder amount(BigDecimal amount) {
             this.amount = amount;
             return this;
         }
 
-        TransactionBuilder balance(BigDecimal balance) {
+        public TransactionBuilder balance(BigDecimal balance) {
             this.balance = balance;
             return this;
         }
 
-        TransactionBuilder operationDate(LocalDate operationDate) {
+        public TransactionBuilder operationDate(LocalDate operationDate) {
             this.operationDate = operationDate;
             return this;
         }
 
-        TransactionBuilder bookingDate(LocalDate bookingDate) {
+        public TransactionBuilder bookingDate(LocalDate bookingDate) {
             this.bookingDate = bookingDate;
             return this;
         }
 
-        TransactionBuilder title(String title) {
+        public TransactionBuilder title(String title) {
             this.title = title;
             return this;
         }
 
-        TransactionBuilder transactioneeName(String transactioneeName) {
+        public TransactionBuilder transactioneeName(String transactioneeName) {
             this.transactioneeName = transactioneeName;
             return this;
         }
 
-        TransactionBuilder transactioneeAccountNumber(String transactioneeAccountNumber) {
+        public TransactionBuilder transactioneeAccountNumber(String transactioneeAccountNumber) {
             this.transactioneeAccountNumber = transactioneeAccountNumber;
             return this;
         }
 
-        Transaction build() {
+        public Transaction build() {
             return new Transaction(amount, balance, operationDate, bookingDate, title, transactioneeName, transactioneeAccountNumber);
         }
     }
