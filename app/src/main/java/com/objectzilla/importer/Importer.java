@@ -7,5 +7,7 @@ import java.io.File;
 import java.util.List;
 
 public interface Importer {
-    Observable<Transaction> importLine(List<String> line);
+    Transaction importLine(List<String> line);
+
+    int getHeaderLength();
 }
