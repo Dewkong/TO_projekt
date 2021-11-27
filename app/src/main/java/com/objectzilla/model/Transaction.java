@@ -51,7 +51,7 @@ public class Transaction {
         return transactioneeAccountNumber;
     }
 
-    public static class TransactionBuilder {
+    public static class Builder {
 
         private BigDecimal amount = BigDecimal.ZERO;
         private BigDecimal balance = BigDecimal.ZERO;
@@ -61,37 +61,37 @@ public class Transaction {
         private String transactioneeName = ""; // nadawca/odbiorca
         private String transactioneeAccountNumber = "";
 
-        public TransactionBuilder amount(BigDecimal amount) {
+        public Builder amount(BigDecimal amount) {
             this.amount = amount;
             return this;
         }
 
-        public TransactionBuilder balance(BigDecimal balance) {
+        public Builder balance(BigDecimal balance) {
             this.balance = balance;
             return this;
         }
 
-        public TransactionBuilder operationDate(LocalDate operationDate) {
+        public Builder operationDate(LocalDate operationDate) {
             this.operationDate = operationDate;
             return this;
         }
 
-        public TransactionBuilder bookingDate(LocalDate bookingDate) {
+        public Builder bookingDate(LocalDate bookingDate) {
             this.bookingDate = bookingDate;
             return this;
         }
 
-        public TransactionBuilder title(String title) {
+        public Builder title(String title) {
             this.title = title;
             return this;
         }
 
-        public TransactionBuilder transactioneeName(String transactioneeName) {
+        public Builder transactioneeName(String transactioneeName) {
             this.transactioneeName = transactioneeName;
             return this;
         }
 
-        public TransactionBuilder transactioneeAccountNumber(String transactioneeAccountNumber) {
+        public Builder transactioneeAccountNumber(String transactioneeAccountNumber) {
             this.transactioneeAccountNumber = transactioneeAccountNumber;
             return this;
         }

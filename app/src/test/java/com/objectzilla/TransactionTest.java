@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class TransactionTest {
     @Test
     public void createTransaction() {
-        Transaction.TransactionBuilder transactionBuilder = new Transaction.TransactionBuilder();
-        transactionBuilder.amount(BigDecimal.valueOf(100));
-        transactionBuilder.balance(BigDecimal.valueOf(200));
-        transactionBuilder.title("Tytul");
-        var transaction = transactionBuilder.build();
+        var transaction = new Transaction.Builder()
+                .amount(BigDecimal.valueOf(100))
+                .balance(BigDecimal.valueOf(200))
+                .title("Tytul")
+                .build();
         assertNotNull(transaction);
         assertEquals(BigDecimal.valueOf(100), transaction.getAmount());
         assertEquals(BigDecimal.valueOf(200), transaction.getBalance());
