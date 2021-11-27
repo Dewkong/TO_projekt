@@ -1,6 +1,9 @@
 package com.objectzilla.importer;
 
+import com.opencsv.CSVParser;
+import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
 import io.reactivex.rxjava3.core.Observable;
 
 import java.io.File;
@@ -19,7 +22,9 @@ public class CsvParser implements Parser{
     public Observable<List<String>> parse(File file) {
 
         return Observable.create(observer -> {
-            CSVReader csvReader = new CSVReader(new FileReader(file));
+            CSVReader csvReader = new CSVReaderBuilder(new FileReader(file))
+                    .withCSVParser(new CSVParserBuilder().withSeparator(';').build())
+                    .build();
 
             String[] values;
             while ((values = csvReader.readNext()) != null) {
