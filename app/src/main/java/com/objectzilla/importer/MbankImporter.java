@@ -13,14 +13,14 @@ public class MbankImporter implements Importer{
 
     @Override
     public Transaction importLine(List<String> line) {
-        Transaction.TransactionBuilder transactionBuilder = new Transaction.TransactionBuilder();
-        transactionBuilder.operationDate(LocalDate.parse(line.get(0)));
-        transactionBuilder.bookingDate(LocalDate.parse(line.get(1)));
-        transactionBuilder.title(line.get(3));
-        transactionBuilder.transactioneeName(line.get(4));
-        transactionBuilder.transactioneeAccountNumber(line.get(5));
-        transactionBuilder.amount(new BigDecimal(line.get(6)));
-        transactionBuilder.balance(new BigDecimal(line.get(7)));
+        Transaction.TransactionBuilder transactionBuilder = new Transaction.TransactionBuilder()
+            .operationDate(LocalDate.parse(line.get(0)))
+            .bookingDate(LocalDate.parse(line.get(1)))
+            .title(line.get(3))
+            .transactioneeName(line.get(4))
+            .transactioneeAccountNumber(line.get(5))
+            .amount(new BigDecimal(line.get(6)))
+            .balance(new BigDecimal(line.get(7)));
 
         return transactionBuilder.build();
     }
