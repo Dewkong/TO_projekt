@@ -3,11 +3,25 @@
  */
 package com.objectzilla;
 
+import com.objectzilla.controller.AppController;
+import javafx.application.Application;
+import javafx.stage.Stage;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class App {
+
+public class App  extends Application {
+    private Stage primaryStage;
+    private AppController appController;
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        this.primaryStage = primaryStage;
+        this.appController = new AppController(primaryStage);
+        this.appController.initRootLayout();
+    }
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        launch(args);
     }
 }
