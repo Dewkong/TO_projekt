@@ -18,7 +18,7 @@ import java.util.Properties;
 public class PersistenceConfig {
     private Environment env;
 
-    private static final String[] ENTITY_PACKAGES = { "com.objectzilla.model" };
+    private static final String[] ENTITY_PACKAGES = {"com.objectzilla.model"};
 
     @Bean
     public DataSource dataSource() {
