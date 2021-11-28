@@ -1,22 +1,16 @@
 package com.objectzilla.importer;
 
-import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import io.reactivex.rxjava3.core.Observable;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
-import java.util.logging.Level;
 
-public class CsvParser implements Parser{
+public class CsvParser implements Parser {
 
     @Override
     public Observable<List<String>> parse(File file) {

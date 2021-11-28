@@ -20,7 +20,7 @@ public class ImporterService {
         this.importers.put(Bank.SANTANDER, new SantanderImporter());
     }
 
-    public Observable<Transaction> importFromCsv(Bank bank, File file){
+    public Observable<Transaction> importFromCsv(Bank bank, File file) {
         return new CsvParser().parse(file)
                 .skip(importers.get(bank).getHeaderLength())
                 .map(line -> importers.get(bank).importLine(line));
