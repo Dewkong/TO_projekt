@@ -1,17 +1,26 @@
 package com.objectzilla.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Entity
 public class Transaction {
 
-    private final BigDecimal amount;
-    private final BigDecimal balance;
-    private final LocalDate operationDate;
-    private final LocalDate bookingDate;
-    private final String title;
-    private final String transactioneeName; // nadawca/odbiorca
-    private final String transactioneeAccountNumber;
+    private BigDecimal amount;
+    private BigDecimal balance;
+    private LocalDate operationDate;
+    private LocalDate bookingDate;
+    private String title;
+    private String transactioneeName; // nadawca/odbiorca
+    private String transactioneeAccountNumber;
+    private Long id;
+
+    public Transaction() {
+
+    }
 
     public Transaction(BigDecimal bigDecimal, BigDecimal balance, LocalDate operationDate, LocalDate bookingDate, String title, String transactioneeName, String transactioneeAccountNumber) {
         this.amount = bigDecimal;
@@ -23,32 +32,70 @@ public class Transaction {
         this.transactioneeAccountNumber = transactioneeAccountNumber;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Id
+    @GeneratedValue
+    public Long getId() {
+        return id;
+    }
+
     public BigDecimal getAmount() {
         return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
     public BigDecimal getBalance() {
         return balance;
     }
 
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+
     public LocalDate getOperationDate() {
         return operationDate;
+    }
+
+    public void setOperationDate(LocalDate operationDate) {
+        this.operationDate = operationDate;
     }
 
     public LocalDate getBookingDate() {
         return bookingDate;
     }
 
+    public void setBookingDate(LocalDate bookingDate) {
+        this.bookingDate = bookingDate;
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getTransactioneeName() {
         return transactioneeName;
     }
 
+    public void setTransactioneeName(String transactioneeName) {
+        this.transactioneeName = transactioneeName;
+    }
+
     public String getTransactioneeAccountNumber() {
         return transactioneeAccountNumber;
+    }
+
+    public void setTransactioneeAccountNumber(String transactioneeAccountNumber) {
+        this.transactioneeAccountNumber = transactioneeAccountNumber;
     }
 
     public static class Builder {
