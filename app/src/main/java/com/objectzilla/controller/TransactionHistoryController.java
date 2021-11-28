@@ -1,6 +1,9 @@
 package com.objectzilla.controller;
 
+import com.objectzilla.model.Bank;
 import com.objectzilla.model.TransactionHistory;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import com.objectzilla.model.Transaction;
@@ -75,8 +78,7 @@ public class TransactionHistoryController {
                 pathField.setText(selectedFile.getPath());
             }
         });
-        //TODO
-        //choicebox values from ENUM
+        bankBox.getItems().setAll(FXCollections.observableArrayList(Bank.values()));
     }
 
     public void setTransactionHistory(TransactionHistory transactionHistory){
