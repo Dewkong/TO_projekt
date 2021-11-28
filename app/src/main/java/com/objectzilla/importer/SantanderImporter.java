@@ -11,7 +11,7 @@ public class SantanderImporter implements Importer {
 
     @Override
     public Transaction importLine(List<String> line) {
-        Transaction.TransactionBuilder transactionBuilder = new Transaction.TransactionBuilder()
+        Transaction.Builder transactionBuilder = new Transaction.Builder()
                 .operationDate(LocalDate.parse(line.get(1)))
                 .bookingDate(LocalDate.parse(line.get(0)))
                 .title(line.get(2))
