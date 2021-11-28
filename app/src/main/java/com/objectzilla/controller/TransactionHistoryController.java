@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import com.objectzilla.model.Transaction;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -63,13 +64,13 @@ public class TransactionHistoryController {
     private void initialize(){
         transactionsTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-        operationColumn.setCellValueFactory(dataValue -> dataValue.getValue().operationDateProperty());
-        bookingColumn.setCellValueFactory(dataValue -> dataValue.getValue().bookingDateProperty());
-        titleColumn.setCellValueFactory(dataValue -> dataValue.getValue().titleProperty());
-        nameColumn.setCellValueFactory(dataValue -> dataValue.getValue().transactioneeNameProperty());
-        accountNumberColumn.setCellValueFactory(dataValue -> dataValue.getValue().transactioneeAccountNumberProperty());
-        amountColumn.setCellValueFactory(dataValue -> dataValue.getValue().amountProperty());
-        balanceColumn.setCellValueFactory(dataValue -> dataValue.getValue().balanceProperty());
+        operationColumn.setCellValueFactory(new PropertyValueFactory<>("operationDate"));
+        bookingColumn.setCellValueFactory(new PropertyValueFactory<>("bookingDate"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("transactioneeName"));
+        accountNumberColumn.setCellValueFactory(new PropertyValueFactory<>("transactioneeAccountNumber"));
+        amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        balanceColumn.setCellValueFactory(new PropertyValueFactory<>("balance"));
 
         fileChooser = new FileChooser();
         fileButton.setOnAction(e ->{
