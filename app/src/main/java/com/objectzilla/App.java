@@ -6,7 +6,6 @@ package com.objectzilla;
 import com.objectzilla.controller.AppController;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 
@@ -15,10 +14,8 @@ public class App extends Application {
 
     @Override
     public void init() {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        context.register(AppConfig.class);
-        context.registerBean(Application.class, () -> this);
-        context.refresh();
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        appController = context.getBean(AppController.class);
     }
 
     @Override
@@ -28,11 +25,5 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch(args);
-    }
-
-    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
-    @Autowired
-    public void setAppController(AppController appController) {
-        this.appController = appController;
     }
 }
