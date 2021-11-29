@@ -4,6 +4,7 @@ import com.objectzilla.model.Transaction;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class MbankImporter implements Importer {
@@ -11,14 +12,17 @@ public class MbankImporter implements Importer {
 
     @Override
     public Transaction importLine(List<String> line) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.MM.yyyy");
+        System.out.println(line);
         Transaction.Builder transactionBuilder = new Transaction.Builder()
-                .operationDate(LocalDate.parse(line.get(0)))
-                .bookingDate(LocalDate.parse(line.get(1)))
+                .operationDate(LocalDate.parse(line.get(0), formatter))
+                .bookingDate(LocalDate.parse(line.get(1), formatter))
                 .title(line.get(3))
                 .transactioneeName(line.get(4))
                 .transactioneeAccountNumber(line.get(5))
-                .amount(new BigDecimal(line.get(6)))
-                .balance(new BigDecimal(line.get(7)));
+                .amount(new BigDecimal(line.get(6).replace(" ", "").replace(',', '.')))
+                .balance(new BigDecimal(line.get(7).replace(" ", "").replace(',', '.')));
+
 
         return transactionBuilder.build();
     }
