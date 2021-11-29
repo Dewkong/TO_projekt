@@ -3,6 +3,8 @@ package com.objectzilla.controller;
 import com.objectzilla.model.Bank;
 import com.objectzilla.model.Transaction;
 import com.objectzilla.model.TransactionHistory;
+import com.objectzilla.persistence.repository.TransactionRepository;
+import com.objectzilla.service.ImporterService;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +19,8 @@ import java.time.LocalDate;
 
 public class TransactionHistoryController implements Controller {
     private AppController appController;
+    private TransactionRepository transactionRepository;
+    private ImporterService importerService;
 
     @FXML
     private TableView<Transaction> transactionsTable;
@@ -99,5 +103,15 @@ public class TransactionHistoryController implements Controller {
     @Autowired
     public void setAppController(AppController appController) {
         this.appController = appController;
+    }
+
+    @Autowired
+    public void setTransactionRepository(TransactionRepository transactionRepository) {
+        this.transactionRepository = transactionRepository;
+    }
+
+    @Autowired
+    public void setImporterService(ImporterService importerService) {
+        this.importerService = importerService;
     }
 }
