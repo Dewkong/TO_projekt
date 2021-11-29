@@ -1,10 +1,5 @@
 package com.objectzilla.model;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
