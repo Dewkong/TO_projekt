@@ -72,6 +72,7 @@ public class TransactionHistoryController {
         amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
         balanceColumn.setCellValueFactory(new PropertyValueFactory<>("balance"));
 
+        openButton.disableProperty().bind(bankBox.valueProperty().isNull());
         fileChooser = new FileChooser();
         fileButton.setOnAction(e ->{
             selectedFile = fileChooser.showOpenDialog(this.appController.getPrimaryStage());
