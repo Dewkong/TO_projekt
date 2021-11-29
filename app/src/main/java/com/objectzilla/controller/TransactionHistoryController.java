@@ -73,15 +73,15 @@ public class TransactionHistoryController implements Controller {
         openButton.disableProperty().bind(bankBox.valueProperty().isNull());
         bankBox.getItems().setAll(FXCollections.observableArrayList(Bank.values()));
 
-        transactionsTable.setItems(transactionHistory.getTransactions());
+        setTransactionHistory(new TransactionHistory());
         for (Transaction transaction : transactionRepository.findAll())
             transactionHistory.addTransaction(transaction);
     }
 
 
-    @Autowired
     public void setTransactionHistory(TransactionHistory transactionHistory) {
         this.transactionHistory = transactionHistory;
+        transactionsTable.setItems(transactionHistory.getTransactions());
     }
 
 

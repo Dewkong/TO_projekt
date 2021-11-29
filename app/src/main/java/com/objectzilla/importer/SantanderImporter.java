@@ -8,11 +8,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class SantanderImporter implements Importer {
-    private final int headerLength = 1;
+    private final static int headerLength = 1;
+    private final static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.MM.yyyy");
 
     @Override
     public Transaction importLine(List<String> line) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.MM.yyyy");
         Transaction.Builder transactionBuilder = new Transaction.Builder()
                 .operationDate(LocalDate.parse(line.get(1), formatter))
                 .bookingDate(LocalDate.parse(line.get(0), formatter))

@@ -8,11 +8,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class MbankImporter implements Importer {
-    private final int headerLength = 38;
+    private final static int headerLength = 38;
+    private final static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.MM.yyyy");
 
     @Override
     public Transaction importLine(List<String> line) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.MM.yyyy");
         System.out.println(line);
         Transaction.Builder transactionBuilder = new Transaction.Builder()
                 .operationDate(LocalDate.parse(line.get(0), formatter))
