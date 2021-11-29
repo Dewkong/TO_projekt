@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import java.io.File;
 import java.math.BigDecimal;
@@ -22,6 +23,13 @@ public class TransactionHistoryController implements Controller {
     private AppController appController;
     private TransactionRepository transactionRepository;
     private ImporterService importerService;
+
+    @Autowired
+    public void setTransactionManager(PlatformTransactionManager transactionManager) {
+        this.transactionManager = transactionManager;
+    }
+
+    private PlatformTransactionManager transactionManager;
 
     @FXML
     private TableView<Transaction> transactionsTable;
