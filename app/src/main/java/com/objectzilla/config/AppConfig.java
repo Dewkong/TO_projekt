@@ -1,5 +1,6 @@
 package com.objectzilla.config;
 
+import com.objectzilla.model.TransactionHistory;
 import com.objectzilla.service.ImporterService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,5 +14,10 @@ public class AppConfig {
     @Bean
     public ImporterService importerService() {
         return new ImporterService();
+    }
+
+    @Bean
+    public TransactionHistory transactionHistory() {
+        return new TransactionHistory();
     }
 }
