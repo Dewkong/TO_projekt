@@ -3,6 +3,7 @@
  */
 package com.objectzilla;
 
+import com.objectzilla.config.AppConfig;
 import com.objectzilla.controller.AppController;
 import javafx.application.Application;
 import javafx.stage.Stage;

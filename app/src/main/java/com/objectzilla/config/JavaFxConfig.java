@@ -1,4 +1,4 @@
-package com.objectzilla;
+package com.objectzilla.config;
 
 import com.objectzilla.controller.AppController;
 import com.objectzilla.controller.TransactionHistoryController;
