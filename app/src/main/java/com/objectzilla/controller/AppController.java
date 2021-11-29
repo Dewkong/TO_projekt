@@ -26,7 +26,7 @@ public class AppController {
         try{
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass()
-                    .getResource("../../../view/TransactionHistoryPane.fxml"));
+                    .getResource("/view/TransactionHistoryPane.fxml"));
             BorderPane rootLayout = loader.load();
 
             TransactionHistoryController controller = loader.getController();
