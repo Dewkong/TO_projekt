@@ -1,21 +1,21 @@
 package com.objectzilla.controller;
 
 import com.objectzilla.model.Bank;
+import com.objectzilla.model.Transaction;
 import com.objectzilla.model.TransactionHistory;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import com.objectzilla.model.Transaction;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class TransactionHistoryController {
+public class TransactionHistoryController implements Controller {
     private AppController appController;
 
     @FXML
@@ -75,7 +75,7 @@ public class TransactionHistoryController {
         openButton.disableProperty().bind(bankBox.valueProperty().isNull());
         fileChooser = new FileChooser();
         fileButton.setOnAction(e ->{
-            selectedFile = fileChooser.showOpenDialog(this.appController.getPrimaryStage());
+            selectedFile = fileChooser.showOpenDialog(appController.getPrimaryStage());
             if (selectedFile != null){
                 pathField.setText(selectedFile.getPath());
             }
@@ -96,6 +96,7 @@ public class TransactionHistoryController {
         System.out.println("TODO click open");
     }
 
+    @Autowired
     public void setAppController(AppController appController) {
         this.appController = appController;
     }
