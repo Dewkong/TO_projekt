@@ -53,10 +53,13 @@ public class TransactionHistoryController implements Controller {
     @FXML
     private Button openButton;
 
+    @FXML
+    private Button clearButton;
+
     private TransactionHistory transactionHistory;
 
     @FXML
-    private void initialize(){
+    private void initialize() {
         transactionsTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         operationColumn.setCellValueFactory(new PropertyValueFactory<>("operationDate"));
@@ -99,6 +102,12 @@ public class TransactionHistoryController implements Controller {
                         transactionRepository.save(transaction);
                     });
         }
+    }
+
+    @FXML
+    private void handleClearAction(ActionEvent event) {
+        transactionRepository.deleteAll();
+        transactionHistory.getTransactions().clear();
     }
 
     @Autowired
