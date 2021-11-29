@@ -5,6 +5,7 @@ import com.objectzilla.model.Transaction;
 import com.objectzilla.model.TransactionHistory;
 import com.objectzilla.persistence.repository.TransactionRepository;
 import com.objectzilla.service.ImporterService;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -47,20 +48,10 @@ public class TransactionHistoryController implements Controller {
     private TableColumn<Transaction, BigDecimal> balanceColumn;
 
     @FXML
-    private Button fileButton;
-
-    @FXML
-    private TextField pathField;
-
-    @FXML
     private ChoiceBox<Object> bankBox;
 
     @FXML
     private Button openButton;
-
-    private FileChooser fileChooser;
-
-    private File selectedFile;
 
     private TransactionHistory transactionHistory;
 
@@ -77,27 +68,37 @@ public class TransactionHistoryController implements Controller {
         balanceColumn.setCellValueFactory(new PropertyValueFactory<>("balance"));
 
         openButton.disableProperty().bind(bankBox.valueProperty().isNull());
-        fileChooser = new FileChooser();
-        fileButton.setOnAction(e ->{
-            selectedFile = fileChooser.showOpenDialog(appController.getPrimaryStage());
-            if (selectedFile != null){
-                pathField.setText(selectedFile.getPath());
-            }
-        });
         bankBox.getItems().setAll(FXCollections.observableArrayList(Bank.values()));
+
+        transactionsTable.setItems(transactionHistory.getTransactions());
+        for (Transaction transaction : transactionRepository.findAll())
+            transactionHistory.addTransaction(transaction);
     }
 
-    public void setTransactionHistory(TransactionHistory transactionHistory){
+
+    @Autowired
+    public void setTransactionHistory(TransactionHistory transactionHistory) {
         this.transactionHistory = transactionHistory;
-        transactionsTable.setItems(transactionHistory.getTransactions());
     }
 
 
     @FXML
     private void handleOpenAction(ActionEvent event) {
-        //TODO
-        pathField.setText("");
-        System.out.println("TODO click open");
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Bank CSV File");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Csv Files", "*.csv")
+        );
+        File bankFile = fileChooser.showOpenDialog(this.appController.getPrimaryStage());
+
+        if (bankFile != null) {
+            importerService.importFromCsv((Bank) bankBox.getValue(), bankFile)
+                    .subscribeOn(Schedulers.io())
+                    .subscribe(transaction -> {
+                        transactionHistory.addTransaction(transaction);
+                        transactionRepository.save(transaction);
+                    });
+        }
     }
 
     @Autowired
