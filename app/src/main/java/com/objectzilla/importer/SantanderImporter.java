@@ -8,14 +8,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class SantanderImporter implements Importer {
-    private final static int headerLength = 1;
-    private final static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.MM.yyyy");
+    private final static int HEADER_LENGTH = 1;
+    private final static DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("d.MM.yyyy");
 
     @Override
     public Transaction importLine(List<String> line) {
         Transaction.Builder transactionBuilder = new Transaction.Builder()
-                .operationDate(LocalDate.parse(line.get(1), formatter))
-                .bookingDate(LocalDate.parse(line.get(0), formatter))
+                .operationDate(LocalDate.parse(line.get(1), FORMATTER))
+                .bookingDate(LocalDate.parse(line.get(0), FORMATTER))
                 .title(line.get(2))
                 .transactioneeName(line.get(3))
                 .transactioneeAccountNumber(line.get(4))
@@ -28,6 +28,6 @@ public class SantanderImporter implements Importer {
 
     @Override
     public int getHeaderLength() {
-        return headerLength;
+        return HEADER_LENGTH;
     }
 }

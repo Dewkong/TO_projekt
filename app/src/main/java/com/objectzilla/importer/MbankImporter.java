@@ -8,15 +8,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class MbankImporter implements Importer {
-    private final static int headerLength = 38;
-    private final static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.MM.yyyy");
+    private final static int HEADER_LENGTH = 38;
+    private final static DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("d.MM.yyyy");
 
     @Override
     public Transaction importLine(List<String> line) {
         System.out.println(line);
         Transaction.Builder transactionBuilder = new Transaction.Builder()
-                .operationDate(LocalDate.parse(line.get(0), formatter))
-                .bookingDate(LocalDate.parse(line.get(1), formatter))
+                .operationDate(LocalDate.parse(line.get(0), FORMATTER))
+                .bookingDate(LocalDate.parse(line.get(1), FORMATTER))
                 .title(line.get(3))
                 .transactioneeName(line.get(4))
                 .transactioneeAccountNumber(line.get(5))
@@ -29,6 +29,6 @@ public class MbankImporter implements Importer {
 
     @Override
     public int getHeaderLength() {
-        return headerLength;
+        return HEADER_LENGTH;
     }
 }
