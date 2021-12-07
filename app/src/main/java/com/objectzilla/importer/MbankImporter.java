@@ -26,10 +26,14 @@ public class MbankImporter implements Importer {
                 .bookingDate(LocalDate.parse(line.get(BOOKING_DATE_INDEX), FORMATTER))
                 .title(line.get(TITLE_INDEX))
                 .transactioneeName(line.get(TRANSACTIONEE_NAME_INDEX))
-                .transactioneeAccountNumber(line.get(TRANSACTIONEE_ACCOUNT_NUMBER_INDEX))
+                .transactioneeAccountNumber(formatAccountNumber(line.get(TRANSACTIONEE_ACCOUNT_NUMBER_INDEX)))
                 .amount(MoneyParser.parseMoneyString(line.get(AMOUNT_INDEX)))
                 .balance(MoneyParser.parseMoneyString(line.get(BALANCE_INDEX)));
         return transactionBuilder.build();
+    }
+
+    private String formatAccountNumber(String accountNumber) {
+        return accountNumber.replace("'", "");
     }
 
     @Override
