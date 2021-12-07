@@ -1,8 +1,8 @@
 package com.objectzilla.importer;
 
 import com.objectzilla.model.Transaction;
+import com.objectzilla.util.MoneyParser;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -27,8 +27,8 @@ public class SantanderImporter implements Importer {
                 .title(line.get(TITLE_INDEX))
                 .transactioneeName(line.get(TRANSACTIONEE_NAME_INDEX))
                 .transactioneeAccountNumber(line.get(TRANSACTIONEE_ACCOUNT_NUMBER_INDEX))
-                .amount(new BigDecimal(line.get(AMOUNT_INDEX).replace(" ", "").replace(',', '.')))
-                .balance(new BigDecimal(line.get(BALANCE_INDEX).replace(" ", "").replace(',', '.')));
+                .amount(MoneyParser.parseMoneyString(line.get(AMOUNT_INDEX)))
+                .balance(MoneyParser.parseMoneyString(line.get(BALANCE_INDEX)));
         return transactionBuilder.build();
     }
 
