@@ -1,6 +1,9 @@
 package com.objectzilla.model;
 
-import javafx.beans.property.*;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,14 +24,14 @@ public class Transaction {
     private Long id;
 
     public Transaction() {
-
+        this(BigDecimal.ZERO, BigDecimal.ZERO, null, null, "", "", "");
     }
 
-    public Transaction(BigDecimal bigDecimal, BigDecimal balance, LocalDate operationDate, LocalDate bookingDate, String title, String transactioneeName, String transactioneeAccountNumber) {
-        this.amountProperty = new SimpleObjectProperty<BigDecimal>(bigDecimal);
-        this.balanceProperty = new SimpleObjectProperty<BigDecimal>(balance);
-        this.operationDateProperty = new SimpleObjectProperty<LocalDate>(operationDate);
-        this.bookingDateProperty = new SimpleObjectProperty<LocalDate>(bookingDate);
+    public Transaction(BigDecimal amount, BigDecimal balance, LocalDate operationDate, LocalDate bookingDate, String title, String transactioneeName, String transactioneeAccountNumber) {
+        this.amountProperty = new SimpleObjectProperty<>(amount);
+        this.balanceProperty = new SimpleObjectProperty<>(balance);
+        this.operationDateProperty = new SimpleObjectProperty<>(operationDate);
+        this.bookingDateProperty = new SimpleObjectProperty<>(bookingDate);
         this.titleProperty = new SimpleStringProperty(title);
         this.transactioneeNameProperty = new SimpleStringProperty(transactioneeName);
         this.transactioneeAccountNumberProperty = new SimpleStringProperty(transactioneeAccountNumber);
@@ -44,7 +47,7 @@ public class Transaction {
         return id;
     }
 
-    public BigDecimal amount() {
+    public BigDecimal getAmount() {
         return amountProperty.getValue();
     }
 
@@ -52,7 +55,7 @@ public class Transaction {
         this.amountProperty.setValue(amount);
     }
 
-    public BigDecimal balance() {
+    public BigDecimal getBalance() {
         return balanceProperty.getValue();
     }
 
@@ -60,7 +63,7 @@ public class Transaction {
         this.balanceProperty.setValue(balance);
     }
 
-    public LocalDate operationDate() {
+    public LocalDate getOperationDate() {
         return operationDateProperty.getValue();
     }
 
@@ -68,7 +71,7 @@ public class Transaction {
         this.operationDateProperty.setValue(operationDate);
     }
 
-    public LocalDate bookingDate() {
+    public LocalDate getBookingDate() {
         return bookingDateProperty.getValue();
     }
 
@@ -76,7 +79,7 @@ public class Transaction {
         this.bookingDateProperty.setValue(bookingDate);
     }
 
-    public String title() {
+    public String getTitle() {
         return titleProperty.getValue();
     }
 
@@ -84,7 +87,7 @@ public class Transaction {
         this.titleProperty.setValue(title);
     }
 
-    public String transactioneeName() {
+    public String getTransactioneeName() {
         return transactioneeNameProperty.getValue();
     }
 
@@ -92,7 +95,7 @@ public class Transaction {
         this.transactioneeNameProperty.setValue(transactioneeName);
     }
 
-    public String transactioneeAccountNumber() {
+    public String getTransactioneeAccountNumber() {
         return transactioneeAccountNumberProperty.getValue();
     }
 

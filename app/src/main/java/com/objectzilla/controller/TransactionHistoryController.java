@@ -9,8 +9,11 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -74,8 +77,9 @@ public class TransactionHistoryController implements Controller {
         bankBox.getItems().setAll(FXCollections.observableArrayList(Bank.values()));
 
         setTransactionHistory(new TransactionHistory());
-        for (Transaction transaction : transactionRepository.findAll())
+        for (Transaction transaction : transactionRepository.findAll()) {
             transactionHistory.addTransaction(transaction);
+        }
     }
 
 
@@ -97,10 +101,7 @@ public class TransactionHistoryController implements Controller {
         if (bankFile != null) {
             importerService.importFromCsv((Bank) bankBox.getValue(), bankFile)
                     .subscribeOn(Schedulers.io())
-                    .subscribe(transaction -> {
-                        transactionHistory.addTransaction(transaction);
-                        transactionRepository.save(transaction);
-                    });
+                    .subscribe(transaction -> transactionHistory.addTransaction(transactionRepository.save(transaction)));
         }
     }
 
