@@ -62,13 +62,13 @@ public class TransactionHistoryController implements Controller {
     private void initialize() {
         transactionsTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-        operationColumn.setCellValueFactory(new PropertyValueFactory<>("operationDate"));
-        bookingColumn.setCellValueFactory(new PropertyValueFactory<>("bookingDate"));
-        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("transactioneeName"));
-        accountNumberColumn.setCellValueFactory(new PropertyValueFactory<>("transactioneeAccountNumber"));
-        amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
-        balanceColumn.setCellValueFactory(new PropertyValueFactory<>("balance"));
+        operationColumn.setCellValueFactory(dataValue -> dataValue.getValue().operationDateProperty());
+        bookingColumn.setCellValueFactory(dataValue -> dataValue.getValue().bookingDateProperty());
+        titleColumn.setCellValueFactory(dataValue -> dataValue.getValue().titleProperty());
+        nameColumn.setCellValueFactory(dataValue -> dataValue.getValue().transactioneeNameProperty());
+        accountNumberColumn.setCellValueFactory(dataValue -> dataValue.getValue().transactioneeAccountNumberProperty());
+        amountColumn.setCellValueFactory(dataValue -> dataValue.getValue().amountProperty());
+        balanceColumn.setCellValueFactory(dataValue -> dataValue.getValue().balanceProperty());
 
         openButton.disableProperty().bind(bankBox.valueProperty().isNull());
         bankBox.getItems().setAll(FXCollections.observableArrayList(Bank.values()));

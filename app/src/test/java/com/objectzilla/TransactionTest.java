@@ -17,8 +17,8 @@ public class TransactionTest {
                 .title("Tytul")
                 .build();
         assertNotNull(transaction);
-        assertEquals(BigDecimal.valueOf(100), transaction.getAmount());
-        assertEquals(BigDecimal.valueOf(200), transaction.getBalance());
-        assertEquals("Tytul", transaction.getTitle());
+        assertEquals(BigDecimal.valueOf(100), transaction.amount());
+        assertEquals(BigDecimal.valueOf(200), transaction.balance());
+        assertEquals("Tytul", transaction.title());
     }
 }

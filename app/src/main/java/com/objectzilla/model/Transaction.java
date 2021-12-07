@@ -1,5 +1,7 @@
 package com.objectzilla.model;
 
+import javafx.beans.property.*;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,13 +11,13 @@ import java.time.LocalDate;
 @Entity
 public class Transaction {
 
-    private BigDecimal amount;
-    private BigDecimal balance;
-    private LocalDate operationDate;
-    private LocalDate bookingDate;
-    private String title;
-    private String transactioneeName; // nadawca/odbiorca
-    private String transactioneeAccountNumber;
+    private ObjectProperty<BigDecimal> amountProperty;
+    private ObjectProperty<BigDecimal> balanceProperty;
+    private ObjectProperty<LocalDate> operationDateProperty;
+    private ObjectProperty<LocalDate> bookingDateProperty;
+    private StringProperty titleProperty;
+    private StringProperty transactioneeNameProperty; // nadawca/odbiorca
+    private StringProperty transactioneeAccountNumberProperty;
     private Long id;
 
     public Transaction() {
@@ -23,13 +25,13 @@ public class Transaction {
     }
 
     public Transaction(BigDecimal bigDecimal, BigDecimal balance, LocalDate operationDate, LocalDate bookingDate, String title, String transactioneeName, String transactioneeAccountNumber) {
-        this.amount = bigDecimal;
-        this.balance = balance;
-        this.operationDate = operationDate;
-        this.bookingDate = bookingDate;
-        this.title = title;
-        this.transactioneeName = transactioneeName;
-        this.transactioneeAccountNumber = transactioneeAccountNumber;
+        this.amountProperty = new SimpleObjectProperty<BigDecimal>(bigDecimal);
+        this.balanceProperty = new SimpleObjectProperty<BigDecimal>(balance);
+        this.operationDateProperty = new SimpleObjectProperty<LocalDate>(operationDate);
+        this.bookingDateProperty = new SimpleObjectProperty<LocalDate>(bookingDate);
+        this.titleProperty = new SimpleStringProperty(title);
+        this.transactioneeNameProperty = new SimpleStringProperty(transactioneeName);
+        this.transactioneeAccountNumberProperty = new SimpleStringProperty(transactioneeAccountNumber);
     }
 
     public void setId(Long id) {
@@ -42,60 +44,88 @@ public class Transaction {
         return id;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
+    public BigDecimal amount() {
+        return amountProperty.getValue();
     }
 
     public void setAmount(BigDecimal amount) {
-        this.amount = amount;
+        this.amountProperty.setValue(amount);
     }
 
-    public BigDecimal getBalance() {
-        return balance;
+    public BigDecimal balance() {
+        return balanceProperty.getValue();
     }
 
     public void setBalance(BigDecimal balance) {
-        this.balance = balance;
+        this.balanceProperty.setValue(balance);
     }
 
-    public LocalDate getOperationDate() {
-        return operationDate;
+    public LocalDate operationDate() {
+        return operationDateProperty.getValue();
     }
 
     public void setOperationDate(LocalDate operationDate) {
-        this.operationDate = operationDate;
+        this.operationDateProperty.setValue(operationDate);
     }
 
-    public LocalDate getBookingDate() {
-        return bookingDate;
+    public LocalDate bookingDate() {
+        return bookingDateProperty.getValue();
     }
 
     public void setBookingDate(LocalDate bookingDate) {
-        this.bookingDate = bookingDate;
+        this.bookingDateProperty.setValue(bookingDate);
     }
 
-    public String getTitle() {
-        return title;
+    public String title() {
+        return titleProperty.getValue();
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.titleProperty.setValue(title);
     }
 
-    public String getTransactioneeName() {
-        return transactioneeName;
+    public String transactioneeName() {
+        return transactioneeNameProperty.getValue();
     }
 
     public void setTransactioneeName(String transactioneeName) {
-        this.transactioneeName = transactioneeName;
+        this.transactioneeNameProperty.setValue(transactioneeName);
     }
 
-    public String getTransactioneeAccountNumber() {
-        return transactioneeAccountNumber;
+    public String transactioneeAccountNumber() {
+        return transactioneeAccountNumberProperty.getValue();
     }
 
     public void setTransactioneeAccountNumber(String transactioneeAccountNumber) {
-        this.transactioneeAccountNumber = transactioneeAccountNumber;
+        this.transactioneeAccountNumberProperty.setValue(transactioneeAccountNumber);
+    }
+
+    public ObjectProperty<BigDecimal> amountProperty() {
+        return amountProperty;
+    }
+
+    public ObjectProperty<BigDecimal> balanceProperty() {
+        return balanceProperty;
+    }
+
+    public ObjectProperty<LocalDate> operationDateProperty() {
+        return operationDateProperty;
+    }
+
+    public ObjectProperty<LocalDate> bookingDateProperty() {
+        return bookingDateProperty;
+    }
+
+    public StringProperty titleProperty() {
+        return titleProperty;
+    }
+
+    public StringProperty transactioneeNameProperty() {
+        return transactioneeNameProperty;
+    }
+
+    public StringProperty transactioneeAccountNumberProperty() {
+        return transactioneeAccountNumberProperty;
     }
 
     public static class Builder {
