@@ -121,6 +121,7 @@ public class TransactionHistoryController implements Controller {
         Transaction transaction = transactionsTable.getSelectionModel().getSelectedItem();
         if (transaction != null){
             appController.showEditDialog(transaction);
+            transactionRepository.save(transaction);
         }
     }
 
