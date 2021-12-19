@@ -6,6 +6,7 @@ import com.objectzilla.model.TransactionHistory;
 import com.objectzilla.persistence.repository.TransactionRepository;
 import com.objectzilla.service.ImporterService;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -59,11 +60,14 @@ public class TransactionHistoryController implements Controller {
     @FXML
     private Button clearButton;
 
+    @FXML
+    private Button editButton;
+
     private TransactionHistory transactionHistory;
 
     @FXML
     private void initialize() {
-        transactionsTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        transactionsTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         operationColumn.setCellValueFactory(dataValue -> dataValue.getValue().operationDateProperty());
         bookingColumn.setCellValueFactory(dataValue -> dataValue.getValue().bookingDateProperty());
@@ -74,6 +78,7 @@ public class TransactionHistoryController implements Controller {
         balanceColumn.setCellValueFactory(dataValue -> dataValue.getValue().balanceProperty());
 
         openButton.disableProperty().bind(bankBox.valueProperty().isNull());
+        editButton.disableProperty().bind(Bindings.isEmpty(transactionsTable.getSelectionModel().getSelectedItems()));
         bankBox.getItems().setAll(FXCollections.observableArrayList(Bank.values()));
 
         setTransactionHistory(new TransactionHistory());
@@ -109,6 +114,14 @@ public class TransactionHistoryController implements Controller {
     private void handleClearAction(ActionEvent event) {
         transactionRepository.deleteAll();
         transactionHistory.getTransactions().clear();
+    }
+
+    @FXML
+    private void handleEditAction(ActionEvent event){
+        Transaction transaction = transactionsTable.getSelectionModel().getSelectedItem();
+        if (transaction != null){
+            appController.showEditDialog(transaction);
+        }
     }
 
     @Autowired
