@@ -87,7 +87,12 @@ public class TransactionHistoryController implements Controller {
 
         openButton.disableProperty().bind(bankBox.valueProperty().isNull());
         editButton.disableProperty().bind(Bindings.notEqual(1, Bindings.size(transactionsTable.getSelectionModel().getSelectedItems())));
-        setCategoryButton.disableProperty().bind(Bindings.isEmpty(transactionsTable.getSelectionModel().getSelectedItems()));
+        setCategoryButton.disableProperty().bind(
+                Bindings.or(
+                        Bindings.isEmpty(transactionsTable.getSelectionModel().getSelectedItems()),
+                        categoryBox.valueProperty().isNull()
+                )
+        );
         bankBox.getItems().setAll(FXCollections.observableArrayList(Bank.values()));
         categoryBox.getItems().setAll(FXCollections.observableArrayList(Category.values()));
 
