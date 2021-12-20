@@ -1,9 +1,11 @@
 package com.objectzilla.presenter;
 
 import com.objectzilla.model.Transaction;
+import com.objectzilla.model.TransactionCategory;
 import com.objectzilla.util.MoneyParser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -15,6 +17,9 @@ public class TransactionEditDialogPresenter {
 
     private Transaction transaction;
     private Stage dialogStage;
+
+    @FXML
+    private ComboBox<TransactionCategory> categoryComboBox;
 
     @FXML
     private TextField operationTextField;
@@ -54,6 +59,7 @@ public class TransactionEditDialogPresenter {
         transaction.setTransactioneeAccountNumber(accountNumberTextField.getText());
         transaction.setAmount(MoneyParser.parseMoneyString(amountTextField.getText()));
         transaction.setBalance(MoneyParser.parseMoneyString(balanceTextField.getText()));
+        transaction.setTransactionCategory(categoryComboBox.getSelectionModel().getSelectedItem());
     }
 
     private void updateControls(){
@@ -64,6 +70,7 @@ public class TransactionEditDialogPresenter {
         accountNumberTextField.setText(transaction.getTransactioneeAccountNumber());
         amountTextField.setText(transaction.getAmount().toString());
         balanceTextField.setText(transaction.getBalance().toString());
+        categoryComboBox.getSelectionModel().select(transaction.getTransactionCategory());
     }
 
     @FXML
@@ -75,6 +82,11 @@ public class TransactionEditDialogPresenter {
     @FXML
     public void handleCancelAction(ActionEvent event){
         dialogStage.close();
+    }
+
+    @FXML
+    public void initialize() {
+        categoryComboBox.getItems().setAll(TransactionCategory.values());
     }
 
 }
