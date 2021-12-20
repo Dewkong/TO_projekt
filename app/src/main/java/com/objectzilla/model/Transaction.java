@@ -22,6 +22,7 @@ public class Transaction {
     private StringProperty transactioneeNameProperty; // nadawca/odbiorca
     private StringProperty transactioneeAccountNumberProperty;
     private Long id;
+    private ObjectProperty<Category> categoryProperty;
 
     public Transaction() {
         this(BigDecimal.ZERO, BigDecimal.ZERO, null, null, "", "", "");
@@ -35,6 +36,7 @@ public class Transaction {
         this.titleProperty = new SimpleStringProperty(title);
         this.transactioneeNameProperty = new SimpleStringProperty(transactioneeName);
         this.transactioneeAccountNumberProperty = new SimpleStringProperty(transactioneeAccountNumber);
+        this.categoryProperty = new SimpleObjectProperty<>(Category.NONE);
     }
 
     public void setId(Long id) {
@@ -103,6 +105,14 @@ public class Transaction {
         this.transactioneeAccountNumberProperty.setValue(transactioneeAccountNumber);
     }
 
+    public Category getCategory() {
+        return categoryProperty.getValue();
+    }
+
+    public void setCategory(Category category) {
+        this.categoryProperty.setValue(category);
+    }
+
     public ObjectProperty<BigDecimal> amountProperty() {
         return amountProperty;
     }
@@ -130,6 +140,11 @@ public class Transaction {
     public StringProperty transactioneeAccountNumberProperty() {
         return transactioneeAccountNumberProperty;
     }
+
+    public ObjectProperty<Category> categoryProperty() {
+        return categoryProperty;
+    }
+
 
     public static class Builder {
 

@@ -1,6 +1,7 @@
 package com.objectzilla.controller;
 
 import com.objectzilla.model.Bank;
+import com.objectzilla.model.Category;
 import com.objectzilla.model.Transaction;
 import com.objectzilla.model.TransactionHistory;
 import com.objectzilla.persistence.repository.TransactionRepository;
@@ -8,13 +9,10 @@ import com.objectzilla.service.ImporterService;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -52,7 +50,13 @@ public class TransactionHistoryController implements Controller {
     private TableColumn<Transaction, BigDecimal> balanceColumn;
 
     @FXML
+    public TableColumn<Transaction, Category> categoryColumn;
+
+    @FXML
     private ChoiceBox<Object> bankBox;
+
+    @FXML
+    public ChoiceBox<Category> categoryBox;
 
     @FXML
     private Button openButton;
@@ -63,11 +67,14 @@ public class TransactionHistoryController implements Controller {
     @FXML
     private Button editButton;
 
+    @FXML
+    public Button setCategoryButton;
+
     private TransactionHistory transactionHistory;
 
     @FXML
     private void initialize() {
-        transactionsTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        transactionsTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         operationColumn.setCellValueFactory(dataValue -> dataValue.getValue().operationDateProperty());
         bookingColumn.setCellValueFactory(dataValue -> dataValue.getValue().bookingDateProperty());
@@ -76,10 +83,13 @@ public class TransactionHistoryController implements Controller {
         accountNumberColumn.setCellValueFactory(dataValue -> dataValue.getValue().transactioneeAccountNumberProperty());
         amountColumn.setCellValueFactory(dataValue -> dataValue.getValue().amountProperty());
         balanceColumn.setCellValueFactory(dataValue -> dataValue.getValue().balanceProperty());
+        categoryColumn.setCellValueFactory(dataValue -> dataValue.getValue().categoryProperty());
 
         openButton.disableProperty().bind(bankBox.valueProperty().isNull());
-        editButton.disableProperty().bind(Bindings.isEmpty(transactionsTable.getSelectionModel().getSelectedItems()));
+        editButton.disableProperty().bind(Bindings.notEqual(1, Bindings.size(transactionsTable.getSelectionModel().getSelectedItems())));
+        setCategoryButton.disableProperty().bind(Bindings.isEmpty(transactionsTable.getSelectionModel().getSelectedItems()));
         bankBox.getItems().setAll(FXCollections.observableArrayList(Bank.values()));
+        categoryBox.getItems().setAll(FXCollections.observableArrayList(Category.values()));
 
         setTransactionHistory(new TransactionHistory());
         for (Transaction transaction : transactionRepository.findAll()) {
@@ -117,10 +127,21 @@ public class TransactionHistoryController implements Controller {
     }
 
     @FXML
-    private void handleEditAction(ActionEvent event){
+    private void handleEditAction(ActionEvent event) {
         Transaction transaction = transactionsTable.getSelectionModel().getSelectedItem();
-        if (transaction != null){
+        if (transaction != null) {
             appController.showEditDialog(transaction);
+            transactionRepository.save(transaction);
+        }
+    }
+
+    @FXML
+    private void handleSetCategoryAction(ActionEvent event) {
+        ObservableList<Transaction> transactions = transactionsTable.getSelectionModel().getSelectedItems();
+        Category category = categoryBox.getValue();
+
+        for (Transaction transaction : transactions) {
+            transaction.setCategory(category);
             transactionRepository.save(transaction);
         }
     }
