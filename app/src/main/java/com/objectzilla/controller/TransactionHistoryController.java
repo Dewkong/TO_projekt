@@ -2,6 +2,7 @@ package com.objectzilla.controller;
 
 import com.objectzilla.model.Bank;
 import com.objectzilla.model.Transaction;
+import com.objectzilla.model.TransactionCategory;
 import com.objectzilla.model.TransactionHistory;
 import com.objectzilla.persistence.repository.TransactionRepository;
 import com.objectzilla.service.ImporterService;
@@ -51,6 +52,9 @@ public class TransactionHistoryController implements Controller {
     private TableColumn<Transaction, BigDecimal> balanceColumn;
 
     @FXML
+    private TableColumn<Transaction, TransactionCategory> categoryColumn;
+
+    @FXML
     private ChoiceBox<Object> bankBox;
 
     @FXML
@@ -72,6 +76,7 @@ public class TransactionHistoryController implements Controller {
         accountNumberColumn.setCellValueFactory(dataValue -> dataValue.getValue().transactioneeAccountNumberProperty());
         amountColumn.setCellValueFactory(dataValue -> dataValue.getValue().amountProperty());
         balanceColumn.setCellValueFactory(dataValue -> dataValue.getValue().balanceProperty());
+        categoryColumn.setCellValueFactory(dataValue -> dataValue.getValue().transactionCategoryProperty());
 
         openButton.disableProperty().bind(bankBox.valueProperty().isNull());
         bankBox.getItems().setAll(FXCollections.observableArrayList(Bank.values()));
