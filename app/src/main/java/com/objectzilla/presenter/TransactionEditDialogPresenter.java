@@ -1,9 +1,12 @@
 package com.objectzilla.presenter;
 
+import com.objectzilla.model.Category;
 import com.objectzilla.model.Transaction;
 import com.objectzilla.util.MoneyParser;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -37,12 +40,17 @@ public class TransactionEditDialogPresenter {
     @FXML
     private TextField balanceTextField;
 
-    public void setData(Transaction transaction){
+    @FXML
+    public ChoiceBox<Category> categoryBox;
+
+    public void setData(Transaction transaction) {
         this.transaction = transaction;
         updateControls();
+
+        categoryBox.getItems().setAll(FXCollections.observableArrayList(Category.values()));
     }
 
-    public void setDialogStage(Stage stage){
+    public void setDialogStage(Stage stage) {
         this.dialogStage = stage;
     }
 
@@ -54,6 +62,7 @@ public class TransactionEditDialogPresenter {
         transaction.setTransactioneeAccountNumber(accountNumberTextField.getText());
         transaction.setAmount(MoneyParser.parseMoneyString(amountTextField.getText()));
         transaction.setBalance(MoneyParser.parseMoneyString(balanceTextField.getText()));
+        transaction.setCategory(categoryBox.getValue());
     }
 
     private void updateControls(){
@@ -64,6 +73,7 @@ public class TransactionEditDialogPresenter {
         accountNumberTextField.setText(transaction.getTransactioneeAccountNumber());
         amountTextField.setText(transaction.getAmount().toString());
         balanceTextField.setText(transaction.getBalance().toString());
+        categoryBox.setValue(transaction.getCategory());
     }
 
     @FXML
