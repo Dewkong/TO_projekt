@@ -97,9 +97,9 @@
                     </GridPane.margin>
                 </TextField>
                 <ChoiceBox fx:id="categoryBox" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                    <HBox.margin>
+                    <GridPane.margin>
                         <Insets bottom="0.0" left="5.0" right="5.0" top="5.0"/>
-                    </HBox.margin>
+                    </GridPane.margin>
                 </ChoiceBox>
 
             </children>
