@@ -21,13 +21,14 @@ public class Transaction {
     private StringProperty titleProperty;
     private StringProperty transactioneeNameProperty; // nadawca/odbiorca
     private StringProperty transactioneeAccountNumberProperty;
+    private ObjectProperty<TransactionCategory> category;
     private Long id;
 
     public Transaction() {
-        this(BigDecimal.ZERO, BigDecimal.ZERO, null, null, "", "", "");
+        this(BigDecimal.ZERO, BigDecimal.ZERO, null, null, "", "", "", TransactionCategory.NONE);
     }
 
-    public Transaction(BigDecimal amount, BigDecimal balance, LocalDate operationDate, LocalDate bookingDate, String title, String transactioneeName, String transactioneeAccountNumber) {
+    public Transaction(BigDecimal amount, BigDecimal balance, LocalDate operationDate, LocalDate bookingDate, String title, String transactioneeName, String transactioneeAccountNumber, TransactionCategory category) {
         this.amountProperty = new SimpleObjectProperty<>(amount);
         this.balanceProperty = new SimpleObjectProperty<>(balance);
         this.operationDateProperty = new SimpleObjectProperty<>(operationDate);
@@ -35,6 +36,7 @@ public class Transaction {
         this.titleProperty = new SimpleStringProperty(title);
         this.transactioneeNameProperty = new SimpleStringProperty(transactioneeName);
         this.transactioneeAccountNumberProperty = new SimpleStringProperty(transactioneeAccountNumber);
+        this.category = new SimpleObjectProperty<>(category);
     }
 
     public void setId(Long id) {
@@ -103,6 +105,14 @@ public class Transaction {
         this.transactioneeAccountNumberProperty.setValue(transactioneeAccountNumber);
     }
 
+    public TransactionCategory getTransactionCategory() {
+        return category.getValue();
+    }
+
+    public void setTransactionCategory(TransactionCategory category) {
+        this.category.setValue(category);
+    }
+
     public ObjectProperty<BigDecimal> amountProperty() {
         return amountProperty;
     }
@@ -131,6 +141,10 @@ public class Transaction {
         return transactioneeAccountNumberProperty;
     }
 
+    public ObjectProperty<TransactionCategory> transactionCategoryProperty() {
+        return category;
+    }
+
     public static class Builder {
 
         private BigDecimal amount = BigDecimal.ZERO;
@@ -140,6 +154,7 @@ public class Transaction {
         private String title = "";
         private String transactioneeName = ""; // nadawca/odbiorca
         private String transactioneeAccountNumber = "";
+        private TransactionCategory category;
 
         public Builder amount(BigDecimal amount) {
             this.amount = amount;
@@ -176,8 +191,12 @@ public class Transaction {
             return this;
         }
 
+        public void category(TransactionCategory category) {
+            this.category = category;
+        }
+
         public Transaction build() {
-            return new Transaction(amount, balance, operationDate, bookingDate, title, transactioneeName, transactioneeAccountNumber);
+            return new Transaction(amount, balance, operationDate, bookingDate, title, transactioneeName, transactioneeAccountNumber, category);
         }
     }
 }
