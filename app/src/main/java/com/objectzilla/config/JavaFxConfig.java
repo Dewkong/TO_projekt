@@ -36,4 +36,9 @@ public class JavaFxConfig {
     public ControllerRepository controllerRepository() {
         return new ControllerRepository();
     }
+
+    @Bean
+    public CategoryPieChartController categoryPieChartController() {
+        return new CategoryPieChartController();
+    }
 }

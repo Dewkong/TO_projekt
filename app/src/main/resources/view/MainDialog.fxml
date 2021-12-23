@@ -9,9 +9,12 @@
          prefHeight="600.0" prefWidth="800.0"
          tabClosingPolicy="UNAVAILABLE">
     <Tab text="History">
-        <fx:include fx:id="transactionHistoryPage" source="TransactionHistoryPane.fxml"/>
+        <fx:include source="TransactionHistoryPane.fxml"/>
     </Tab>
     <Tab text="Graph" fx:id="barGraphTab">
-        <fx:include fx:id="barGraphPage" source="BarGraphDialog.fxml"/>
+        <fx:include source="BarGraphDialog.fxml"/>
+    </Tab>
+    <Tab text="Category Pie Chart" fx:id="categoryPieChartTab">
+        <fx:include source="CategoryPieChart.fxml"/>
     </Tab>
 </TabPane>
