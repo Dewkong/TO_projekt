@@ -3,7 +3,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="800.0"
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
             xmlns="http://javafx.com/javafx/11.0.2"
             fx:controller="com.objectzilla.controller.TransactionHistoryController">
     <center>
@@ -27,44 +27,42 @@
         <BorderPane prefHeight="50.0" prefWidth="800.0" BorderPane.alignment="CENTER">
             <center>
                 <VBox prefHeight="200.0" prefWidth="800.0" BorderPane.alignment="CENTER">
-                    <children>
-                        <HBox maxHeight="-Infinity" prefHeight="39.0" prefWidth="800.0">
-                            <ChoiceBox fx:id="categoryBox" prefWidth="150.0">
-                                <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
-                                </HBox.margin>
-                            </ChoiceBox>
-                            <Button fx:id="setCategoryButton" mnemonicParsing="false"
-                                    onAction="#handleSetCategoryAction" text="Set Category">
-                                <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
-                                </HBox.margin>
-                            </Button>
-                        </HBox>
-                        <HBox maxHeight="-Infinity" prefHeight="39.0" prefWidth="800.0">
-                            <ChoiceBox fx:id="bankBox" prefWidth="150.0">
-                                <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
-                                </HBox.margin>
-                            </ChoiceBox>
-                            <Button fx:id="openButton" mnemonicParsing="false" onAction="#handleOpenAction" text="Open">
-                                <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
-                                </HBox.margin>
-                            </Button>
-                            <Button fx:id="clearButton" mnemonicParsing="false" onAction="#handleClearAction"
-                                    text="Clear">
-                                <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
-                                </HBox.margin>
-                            </Button>
-                            <Button fx:id="editButton" mnemonicParsing="false" onAction="#handleEditAction" text="Edit">
-                                <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
-                                </HBox.margin>
-                            </Button>
-                        </HBox>
-                    </children>
+                    <HBox maxHeight="-Infinity" prefHeight="39.0" prefWidth="800.0">
+                        <ChoiceBox fx:id="categoryBox" prefWidth="150.0">
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                            </HBox.margin>
+                        </ChoiceBox>
+                        <Button fx:id="setCategoryButton" mnemonicParsing="false"
+                                onAction="#handleSetCategoryAction" text="Set Category">
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                            </HBox.margin>
+                        </Button>
+                    </HBox>
+                    <HBox maxHeight="-Infinity" prefHeight="39.0" prefWidth="800.0">
+                        <ChoiceBox fx:id="bankBox" prefWidth="150.0">
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                            </HBox.margin>
+                        </ChoiceBox>
+                        <Button fx:id="openButton" mnemonicParsing="false" onAction="#handleOpenAction" text="Open">
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                            </HBox.margin>
+                        </Button>
+                        <Button fx:id="clearButton" mnemonicParsing="false" onAction="#handleClearAction"
+                                text="Clear">
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                            </HBox.margin>
+                        </Button>
+                        <Button fx:id="editButton" mnemonicParsing="false" onAction="#handleEditAction" text="Edit">
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                            </HBox.margin>
+                        </Button>
+                    </HBox>
                 </VBox>
             </center>
         </BorderPane>

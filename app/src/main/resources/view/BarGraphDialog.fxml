@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.objectzilla.controller.BarGraphController"
+          prefWidth="Infinity">
+    <Label text="Start date" GridPane.columnIndex="0" GridPane.rowIndex="0"
+           GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER">
+    </Label>
+    <Label text="End date" GridPane.columnIndex="1" GridPane.rowIndex="0"
+           GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER">
+    </Label>
+    <DatePicker fx:id="startDate" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER">
+    </DatePicker>
+    <DatePicker fx:id="endDate" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER">
+    </DatePicker>
+    <BarChart fx:id="chart" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2"
+              GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER">
+        <xAxis>
+            <CategoryAxis side="BOTTOM" fx:id="xAxis"/>
+        </xAxis>
+        <yAxis>
+            <NumberAxis side="LEFT" fx:id="yAxis" />
+        </yAxis>
+    </BarChart>
+</GridPane>

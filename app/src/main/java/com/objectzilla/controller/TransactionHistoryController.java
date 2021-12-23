@@ -108,6 +108,9 @@ public class TransactionHistoryController implements Controller {
         transactionsTable.setItems(transactionHistory.getTransactions());
     }
 
+    public TransactionHistory getTransactionHistory() {
+        return transactionHistory;
+    }
 
     @FXML
     private void handleOpenAction(ActionEvent event) {

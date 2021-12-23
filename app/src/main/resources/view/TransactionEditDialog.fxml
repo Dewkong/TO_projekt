@@ -20,108 +20,104 @@
                 <RowConstraints minHeight="10.0"/>
                 <RowConstraints minHeight="10.0"/>
             </rowConstraints>
-            <children>
-                <Label text="Operation date">
-                    <GridPane.margin>
-                        <Insets bottom="0.0" left="5.0" right="5.0" top="5.0"/>
-                    </GridPane.margin>
-                </Label>
-                <Label text="Booking date" GridPane.rowIndex="1">
-                    <GridPane.margin>
-                        <Insets bottom="0.0" left="5.0" right="5.0" top="5.0"/>
-                    </GridPane.margin>
-                </Label>
-                <Label text="Title" GridPane.rowIndex="2">
-                    <GridPane.margin>
-                        <Insets bottom="0.0" left="5.0" right="5.0" top="5.0"/>
-                    </GridPane.margin>
-                </Label>
-                <Label text="Name" GridPane.rowIndex="3">
-                    <GridPane.margin>
-                        <Insets bottom="0.0" left="5.0" right="5.0" top="5.0"/>
-                    </GridPane.margin>
-                </Label>
-                <Label text="Account number" GridPane.rowIndex="4">
-                    <GridPane.margin>
-                        <Insets bottom="0.0" left="5.0" right="5.0" top="5.0"/>
-                    </GridPane.margin>
-                </Label>
-                <Label text="Amount" GridPane.rowIndex="5">
-                    <GridPane.margin>
-                        <Insets bottom="0.0" left="5.0" right="5.0" top="5.0"/>
-                    </GridPane.margin>
-                </Label>
-                <Label text="Balance" GridPane.rowIndex="6">
-                    <GridPane.margin>
-                        <Insets bottom="0.0" left="5.0" right="5.0" top="5.0"/>
-                    </GridPane.margin>
-                </Label>
-                <Label text="Category" GridPane.rowIndex="7">
-                    <GridPane.margin>
-                        <Insets bottom="0.0" left="5.0" right="5.0" top="5.0"/>
-                    </GridPane.margin>
-                </Label>
-                <TextField fx:id="operationTextField" GridPane.columnIndex="1">
-                    <GridPane.margin>
-                        <Insets bottom="0.0" left="5.0" right="5.0" top="5.0"/>
-                    </GridPane.margin>
-                </TextField>
-                <TextField fx:id="bookingTextField" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <GridPane.margin>
-                        <Insets bottom="0.0" left="5.0" right="5.0" top="5.0"/>
-                    </GridPane.margin>
-                </TextField>
-                <TextField fx:id="titleTextField" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                    <GridPane.margin>
-                        <Insets bottom="0.0" left="5.0" right="5.0" top="5.0"/>
-                    </GridPane.margin>
-                </TextField>
-                <TextField fx:id="nameTextField" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                    <GridPane.margin>
-                        <Insets bottom="0.0" left="5.0" right="5.0" top="5.0"/>
-                    </GridPane.margin>
-                </TextField>
-                <TextField fx:id="accountNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                    <GridPane.margin>
-                        <Insets bottom="0.0" left="5.0" right="5.0" top="5.0"/>
-                    </GridPane.margin>
-                </TextField>
-                <TextField fx:id="amountTextField" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                    <GridPane.margin>
-                        <Insets bottom="0.0" left="5.0" right="5.0" top="5.0"/>
-                    </GridPane.margin>
-                </TextField>
-                <TextField fx:id="balanceTextField" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                    <GridPane.margin>
-                        <Insets bottom="0.0" left="5.0" right="5.0" top="5.0"/>
-                    </GridPane.margin>
-                </TextField>
-                <ChoiceBox fx:id="categoryBox" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                    <GridPane.margin>
-                        <Insets bottom="0.0" left="5.0" right="5.0" top="5.0"/>
-                    </GridPane.margin>
-                </ChoiceBox>
+            <Label text="Operation date">
+                <GridPane.margin>
+                    <Insets left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+            </Label>
+            <Label text="Booking date" GridPane.rowIndex="1">
+                <GridPane.margin>
+                    <Insets left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+            </Label>
+            <Label text="Title" GridPane.rowIndex="2">
+                <GridPane.margin>
+                    <Insets left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+            </Label>
+            <Label text="Name" GridPane.rowIndex="3">
+                <GridPane.margin>
+                    <Insets left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+            </Label>
+            <Label text="Account number" GridPane.rowIndex="4">
+                <GridPane.margin>
+                    <Insets left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+            </Label>
+            <Label text="Amount" GridPane.rowIndex="5">
+                <GridPane.margin>
+                    <Insets left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+            </Label>
+            <Label text="Balance" GridPane.rowIndex="6">
+                <GridPane.margin>
+                    <Insets left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+            </Label>
+            <Label text="Category" GridPane.rowIndex="7">
+                <GridPane.margin>
+                    <Insets left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+            </Label>
+            <TextField fx:id="operationTextField" GridPane.columnIndex="1">
+                <GridPane.margin>
+                    <Insets left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+            </TextField>
+            <TextField fx:id="bookingTextField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <GridPane.margin>
+                    <Insets left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+            </TextField>
+            <TextField fx:id="titleTextField" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <GridPane.margin>
+                    <Insets left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+            </TextField>
+            <TextField fx:id="nameTextField" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <GridPane.margin>
+                    <Insets left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+            </TextField>
+            <TextField fx:id="accountNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                <GridPane.margin>
+                    <Insets left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+            </TextField>
+            <TextField fx:id="amountTextField" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                <GridPane.margin>
+                    <Insets left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+            </TextField>
+            <TextField fx:id="balanceTextField" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                <GridPane.margin>
+                    <Insets left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+            </TextField>
+            <ChoiceBox fx:id="categoryBox" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                <GridPane.margin>
+                    <Insets left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+            </ChoiceBox>
 
-            </children>
         </GridPane>
     </center>
     <bottom>
         <HBox alignment="BOTTOM_RIGHT" spacing="5.0" BorderPane.alignment="CENTER">
-            <children>
-                <Button mnemonicParsing="false" onAction="#handleCancelAction" prefWidth="60.0" text="Cancel">
-                    <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
-                    </HBox.margin>
-                </Button>
-                <Button mnemonicParsing="false" onAction="#handleOkAction" prefWidth="60.0" text="Ok">
-                    <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
-                    </HBox.margin>
-                </Button>
-            </children>
             <BorderPane.margin>
-                <Insets bottom="0.0" left="5.0" right="5.0" top="5.0"/>
+                <Insets left="5.0" right="5.0" top="5.0"/>
             </BorderPane.margin>
+            <Button mnemonicParsing="false" onAction="#handleCancelAction" prefWidth="60.0" text="Cancel">
+                <HBox.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleOkAction" prefWidth="60.0" text="Ok">
+                <HBox.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </HBox.margin>
+            </Button>
         </HBox>
     </bottom>
     <opaqueInsets>

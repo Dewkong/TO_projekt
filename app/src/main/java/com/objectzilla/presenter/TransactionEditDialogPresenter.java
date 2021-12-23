@@ -1,5 +1,6 @@
 package com.objectzilla.presenter;
 
+import com.objectzilla.controller.Controller;
 import com.objectzilla.model.Category;
 import com.objectzilla.model.Transaction;
 import com.objectzilla.util.MoneyParser;
@@ -13,7 +14,7 @@ import javafx.stage.Stage;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class TransactionEditDialogPresenter {
+public class TransactionEditDialogPresenter implements Controller {
     private final static DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     private Transaction transaction;

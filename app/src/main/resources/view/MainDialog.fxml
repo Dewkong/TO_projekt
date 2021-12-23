@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<TabPane fx:id="tabPane"
+         fx:controller="com.objectzilla.controller.MainController"
+         xmlns="http://javafx.com/javafx/8.0.40"
+         xmlns:fx="http://www.w3.org/2001/XInclude"
+         prefHeight="600.0" prefWidth="800.0"
+         tabClosingPolicy="UNAVAILABLE">
+    <Tab text="History">
+        <fx:include fx:id="transactionHistoryPage" source="TransactionHistoryPane.fxml"/>
+    </Tab>
+    <Tab text="Graph" fx:id="barGraphTab">
+        <fx:include fx:id="barGraphPage" source="BarGraphDialog.fxml"/>
+    </Tab>
+</TabPane>
