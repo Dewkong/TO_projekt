@@ -25,7 +25,7 @@ public class Transaction {
     private ObjectProperty<Category> categoryProperty;
 
     public Transaction() {
-        this(BigDecimal.ZERO, BigDecimal.ZERO, null, null, "", "", "");
+        this(BigDecimal.ZERO, BigDecimal.ZERO, null, null, "", "", "" );
     }
 
     public Transaction(BigDecimal amount, BigDecimal balance, LocalDate operationDate, LocalDate bookingDate, String title, String transactioneeName, String transactioneeAccountNumber) {

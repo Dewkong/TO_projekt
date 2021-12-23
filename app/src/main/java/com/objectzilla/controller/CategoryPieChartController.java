@@ -12,7 +12,7 @@ public class CategoryPieChartController implements Controller {
     @FXML
     private PieChart pieChart;
 
-    private static final String[] colors = new String[] {
+    private static final String[] colors = new String[]{
             "maroon",
             "red",
             "purple",

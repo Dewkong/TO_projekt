@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class TransactionEditDialogPresenter implements Controller {
-    private final static DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private final static DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd" );
 
     private Transaction transaction;
     private Stage dialogStage;
@@ -55,7 +55,7 @@ public class TransactionEditDialogPresenter implements Controller {
         this.dialogStage = stage;
     }
 
-    private void updateModel(){
+    private void updateModel() {
         transaction.setOperationDate(LocalDate.parse(operationTextField.getText(), FORMATTER));
         transaction.setBookingDate(LocalDate.parse(bookingTextField.getText(), FORMATTER));
         transaction.setTitle(titleTextField.getText());
@@ -66,7 +66,7 @@ public class TransactionEditDialogPresenter implements Controller {
         transaction.setCategory(categoryBox.getValue());
     }
 
-    private void updateControls(){
+    private void updateControls() {
         operationTextField.setText(transaction.getOperationDate().format(FORMATTER));
         bookingTextField.setText(transaction.getBookingDate().format(FORMATTER));
         titleTextField.setText(transaction.getTitle());
@@ -78,13 +78,13 @@ public class TransactionEditDialogPresenter implements Controller {
     }
 
     @FXML
-    public void handleOkAction(ActionEvent event){
+    public void handleOkAction(ActionEvent event) {
         updateModel();
         dialogStage.close();
     }
 
     @FXML
-    public void handleCancelAction(ActionEvent event){
+    public void handleCancelAction(ActionEvent event) {
         dialogStage.close();
     }
 

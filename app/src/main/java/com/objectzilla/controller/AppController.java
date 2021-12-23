@@ -21,24 +21,24 @@ public class AppController implements ApplicationContextAware {
     private ControllerRepository controllerRepository;
 
     public void initRootLayout(Stage primaryStage) {
-        try{
-            Parent rootLayout = loadFxml("/view/MainDialog.fxml");
+        try {
+            Parent rootLayout = loadFxml("/view/MainDialog.fxml" );
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
             this.primaryStage = primaryStage;
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void showEditDialog(Transaction transaction){
-        try{
-            Parent parent = loadFxml("/view/TransactionEditDialog.fxml");
+    public void showEditDialog(Transaction transaction) {
+        try {
+            Parent parent = loadFxml("/view/TransactionEditDialog.fxml" );
             Scene scene = new Scene(parent);
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Edit transaction");
+            dialogStage.setTitle("Edit transaction" );
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             dialogStage.setScene(scene);

@@ -115,9 +115,9 @@ public class TransactionHistoryController implements Controller {
     @FXML
     private void handleOpenAction(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Bank CSV File");
+        fileChooser.setTitle("Open Bank CSV File" );
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Csv Files", "*.csv")
+                new FileChooser.ExtensionFilter("Csv Files", "*.csv" )
         );
         File bankFile = fileChooser.showOpenDialog(this.appController.getPrimaryStage());
 
