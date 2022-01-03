@@ -4,15 +4,19 @@ import com.objectzilla.controller.Controller;
 import com.objectzilla.model.Category;
 import com.objectzilla.model.Transaction;
 import com.objectzilla.util.MoneyParser;
+import com.sun.xml.bind.v2.TODO;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.zip.DataFormatException;
 
 public class TransactionEditDialogPresenter implements Controller {
     private final static DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd" );
@@ -66,6 +70,25 @@ public class TransactionEditDialogPresenter implements Controller {
         transaction.setCategory(categoryBox.getValue());
     }
 
+    private boolean validateEdit(){
+        try{
+            LocalDate.parse(operationTextField.getText(), FORMATTER);
+            LocalDate.parse(bookingTextField.getText(), FORMATTER);
+        } catch (DateTimeParseException e){
+            return false;
+        }
+        if (!accountNumberTextField.getText().matches("\\d{26}")){
+            return false;
+        }
+        try{
+            MoneyParser.parseMoneyString(amountTextField.getText());
+            MoneyParser.parseMoneyString(balanceTextField.getText());
+        }catch (NumberFormatException e){
+            return false;
+        }
+        return true;
+    }
+
     private void updateControls() {
         operationTextField.setText(transaction.getOperationDate().format(FORMATTER));
         bookingTextField.setText(transaction.getBookingDate().format(FORMATTER));
@@ -77,10 +100,20 @@ public class TransactionEditDialogPresenter implements Controller {
         categoryBox.setValue(transaction.getCategory());
     }
 
+
     @FXML
     public void handleOkAction(ActionEvent event) {
-        updateModel();
-        dialogStage.close();
+        if (validateEdit()){
+            updateModel();
+            dialogStage.close();
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid values!");
+            alert.setHeaderText("Invalid values!");
+            alert.setContentText("Please check your input");
+            alert.showAndWait();
+        }
+
     }
 
     @FXML
