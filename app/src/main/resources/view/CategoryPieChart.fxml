@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="com.objectzilla.controller.CategoryPieChartController">
-    <PieChart fx:id="pieChart" title="Expenses by category"
-              labelsVisible="false"
-              GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <Label text="Start date" GridPane.columnIndex="0" GridPane.rowIndex="0"
+           GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER">
+    </Label>
+    <Label text="End date" GridPane.columnIndex="1" GridPane.rowIndex="0"
+           GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER">
+    </Label>
+    <DatePicker fx:id="startDate" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER">
+    </DatePicker>
+    <DatePicker fx:id="endDate" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER">
+    </DatePicker>
+    <StackPane GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2"
+               GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER">
+        <PieChart fx:id="pieChart" title="Expenses by category" labelsVisible="false" animated="false"/>
+        <Label fx:id="valueLabel" text="label" textFill="white" StackPane.alignment="CENTER"
+               style="-fx-background-color: rgba(0, 0, 0, 0.6); -fx-font: 20 arial; -fx-padding: 10" visible="false"/>
+    </StackPane>
 </GridPane>

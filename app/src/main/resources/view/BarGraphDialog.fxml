@@ -22,10 +22,10 @@
     <DatePicker fx:id="endDate" GridPane.columnIndex="1" GridPane.rowIndex="1"
                 GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER">
     </DatePicker>
-    <BarChart fx:id="chart" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2"
-              GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER">
+    <BarChart fx:id="chart" animated="false" legendVisible="false" GridPane.columnIndex="0"
+              GridPane.rowIndex="2" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.halignment="CENTER">
         <xAxis>
-            <CategoryAxis side="BOTTOM" fx:id="xAxis"/>
+            <CategoryAxis side="BOTTOM" fx:id="xAxis" tickLabelRotation="-70"/>
         </xAxis>
         <yAxis>
             <NumberAxis side="LEFT" fx:id="yAxis"/>
