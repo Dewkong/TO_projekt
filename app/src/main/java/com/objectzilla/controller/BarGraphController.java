@@ -34,6 +34,9 @@ public class BarGraphController implements Controller {
 
     @FXML
     private void initialize() {
+        endDate.setValue(LocalDate.now());
+        startDate.setValue(LocalDate.now().minusWeeks(1));
+
         startDate.valueProperty().addListener((observable, oldValue, newValue)
                 -> updateRange(newValue, endDate.getValue()));
         endDate.valueProperty().addListener((observable, oldValue, newValue)
