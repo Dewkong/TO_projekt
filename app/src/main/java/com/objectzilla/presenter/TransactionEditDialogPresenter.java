@@ -4,17 +4,17 @@ import com.objectzilla.controller.Controller;
 import com.objectzilla.model.Category;
 import com.objectzilla.model.Transaction;
 import com.objectzilla.util.MoneyParser;
+import com.objectzilla.util.ValidationError;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public class TransactionEditDialogPresenter implements Controller {
     private final static DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd" );
@@ -23,10 +23,10 @@ public class TransactionEditDialogPresenter implements Controller {
     private Stage dialogStage;
 
     @FXML
-    private TextField operationTextField;
+    private DatePicker operationTextField;
 
     @FXML
-    private TextField bookingTextField;
+    private DatePicker bookingTextField;
 
     @FXML
     private TextField titleTextField;
@@ -58,8 +58,8 @@ public class TransactionEditDialogPresenter implements Controller {
     }
 
     private void updateModel() {
-        transaction.setOperationDate(LocalDate.parse(operationTextField.getText(), FORMATTER));
-        transaction.setBookingDate(LocalDate.parse(bookingTextField.getText(), FORMATTER));
+        transaction.setOperationDate(operationTextField.getValue());
+        transaction.setBookingDate(bookingTextField.getValue());
         transaction.setTitle(titleTextField.getText());
         transaction.setTransactioneeName(nameTextField.getText());
         transaction.setTransactioneeAccountNumber(accountNumberTextField.getText());
@@ -68,28 +68,25 @@ public class TransactionEditDialogPresenter implements Controller {
         transaction.setCategory(categoryBox.getValue());
     }
 
-    private boolean validateEdit(){
-        try{
-            LocalDate.parse(operationTextField.getText(), FORMATTER);
-            LocalDate.parse(bookingTextField.getText(), FORMATTER);
-        } catch (DateTimeParseException e){
-            return false;
+    private void validateEdit() throws ValidationError {
+        if (operationTextField.getValue() == null || bookingTextField.getValue() == null) {
+            throw new ValidationError("Operation and booking date are required");
         }
-        if (!accountNumberTextField.getText().matches("\\d{26}")){
-            return false;
+        String accountNumber = accountNumberTextField.getText();
+        if (accountNumber != null && !accountNumber.equals("") && !accountNumber.matches("\\d{26}")){
+            throw new ValidationError("Invalid account number format");
         }
         try{
             MoneyParser.parseMoneyString(amountTextField.getText());
             MoneyParser.parseMoneyString(balanceTextField.getText());
-        }catch (NumberFormatException e){
-            return false;
+        } catch (NumberFormatException e){
+            throw new ValidationError("Invalid amount or balance format");
         }
-        return true;
     }
 
     private void updateControls() {
-        operationTextField.setText(transaction.getOperationDate().format(FORMATTER));
-        bookingTextField.setText(transaction.getBookingDate().format(FORMATTER));
+        operationTextField.setValue(transaction.getOperationDate());
+        bookingTextField.setValue(transaction.getBookingDate());
         titleTextField.setText(transaction.getTitle());
         nameTextField.setText(transaction.getTransactioneeName());
         accountNumberTextField.setText(transaction.getTransactioneeAccountNumber());
@@ -101,17 +98,17 @@ public class TransactionEditDialogPresenter implements Controller {
 
     @FXML
     public void handleOkAction(ActionEvent event) {
-        if (validateEdit()){
+        try {
+            validateEdit();
             updateModel();
             dialogStage.close();
-        }else{
+        } catch (ValidationError e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Invalid values!");
-            alert.setHeaderText("Invalid values!");
+            alert.setTitle("Error");
+            alert.setHeaderText(e.getMessage());
             alert.setContentText("Please check your input");
             alert.showAndWait();
         }
-
     }
 
     @FXML
